@@ -10,6 +10,5 @@
 *.log
 gen/thrift/js
 gen/thrift/py
-vendor/
 crossdock-main
 crossdock/jaeger-docker-compose.yml
