@@ -15,6 +15,7 @@
 package jaeger
 
 import (
+	"context"
 	"errors"
 
 	"github.com/apache/thrift/lib/go/thrift"
@@ -113,7 +114,7 @@ func (s *udpSender) Flush() (int, error) {
 	if n == 0 {
 		return 0, nil
 	}
-	err := s.client.EmitBatch(&j.Batch{Process: s.process, Spans: s.spanBuffer})
+	err := s.client.EmitBatch(context.TODO(), &j.Batch{Process: s.process, Spans: s.spanBuffer})
 	s.resetBuffers()
 
 	return n, err

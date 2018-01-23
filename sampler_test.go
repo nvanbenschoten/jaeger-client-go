@@ -15,6 +15,7 @@
 package jaeger
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"runtime"
@@ -492,7 +493,7 @@ func TestSamplerQueryError(t *testing.T) {
 
 type fakeSamplingManager struct{}
 
-func (c *fakeSamplingManager) GetSamplingStrategy(serviceName string) (*sampling.SamplingStrategyResponse, error) {
+func (c *fakeSamplingManager) GetSamplingStrategy(_ context.Context, serviceName string) (*sampling.SamplingStrategyResponse, error) {
 	return nil, errors.New("query error")
 }
 

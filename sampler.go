@@ -15,6 +15,7 @@
 package jaeger
 
 import (
+	"context"
 	"fmt"
 	"math"
 	"net/url"
@@ -386,7 +387,7 @@ type httpSamplingManager struct {
 	serverURL string
 }
 
-func (s *httpSamplingManager) GetSamplingStrategy(serviceName string) (*sampling.SamplingStrategyResponse, error) {
+func (s *httpSamplingManager) GetSamplingStrategy(_ context.Context, serviceName string) (*sampling.SamplingStrategyResponse, error) {
 	var out sampling.SamplingStrategyResponse
 	v := url.Values{}
 	v.Set("service", serviceName)
@@ -483,7 +484,7 @@ func (s *RemotelyControlledSampler) pollController() {
 }
 
 func (s *RemotelyControlledSampler) updateSampler() {
-	res, err := s.manager.GetSamplingStrategy(s.serviceName)
+	res, err := s.manager.GetSamplingStrategy(context.TODO(), s.serviceName)
 	if err != nil {
 		s.metrics.SamplerQueryFailure.Inc(1)
 		return

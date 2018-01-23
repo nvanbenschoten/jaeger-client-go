@@ -15,6 +15,7 @@
 package testutils
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -104,13 +105,13 @@ func (s *MockAgent) serve(started *sync.WaitGroup) {
 		if err == nil {
 			trans.Write(buf[:n])
 			protocol := protocolFact.GetProtocol(trans)
-			handler.Process(protocol, protocol)
+			handler.Process(context.TODO(), protocol, protocol)
 		}
 	}
 }
 
 // EmitZipkinBatch is deprecated, use EmitBatch
-func (s *MockAgent) EmitZipkinBatch(spans []*zipkincore.Span) (err error) {
+func (s *MockAgent) EmitZipkinBatch(_ context.Context, spans []*zipkincore.Span) (err error) {
 	// TODO remove this for 3.0.0
 	return errors.New("Not implemented")
 }
@@ -124,7 +125,7 @@ func (s *MockAgent) GetZipkinSpans() []*zipkincore.Span {
 func (s *MockAgent) ResetZipkinSpans() {}
 
 // EmitBatch implements EmitBatch() of TChanSamplingManagerServer
-func (s *MockAgent) EmitBatch(batch *jaeger.Batch) (err error) {
+func (s *MockAgent) EmitBatch(_ context.Context, batch *jaeger.Batch) (err error) {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
 	s.jaegerBatches = append(s.jaegerBatches, batch)

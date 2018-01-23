@@ -4,8 +4,8 @@
 [[projects]]
   name = "github.com/apache/thrift"
   packages = ["lib/go/thrift"]
-  revision = "b2a4d4ae21c789b689dd162deb819665567f481c"
-  version = "0.10.0"
+  revision = "327ebb6c2b6df8bf075da02ef45a2a034e9b79ba"
+  version = "0.11.0"
 
 [[projects]]
   branch = "master"
@@ -130,6 +130,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7a06a767b8089d38c4676b92b49cab2020b7507e7d5ea2738533c9a9865782ad"
+  inputs-digest = "4510bf986170719eb312c0ac247325528c9810200c229d4ff2f1f86505169624"
   solver-name = "gps-cdcl"
   solver-version = 1

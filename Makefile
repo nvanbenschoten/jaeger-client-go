@@ -18,8 +18,9 @@ GOFMT=gofmt
 FMT_LOG=fmt.log
 LINT_LOG=lint.log
 
-THRIFT_VER=0.9.3
-THRIFT_IMG=thrift:$(THRIFT_VER)
+#THRIFT_VER=0.10.0
+#THRIFT_IMG=thrift:$(THRIFT_VER)
+THRIFT_IMG=4cde6c54aa6e
 THRIFT=docker run -v "${PWD}:/data" $(THRIFT_IMG) thrift
 THRIFT_GO_ARGS=thrift_import="github.com/apache/thrift/lib/go/thrift"
 THRIFT_GEN_DIR=thrift-gen
